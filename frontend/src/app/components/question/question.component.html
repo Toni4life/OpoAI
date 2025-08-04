@@ -1,0 +1,22 @@
+<div class="bg-white p-6 rounded shadow max-w-xl mx-auto">
+    <h3 class="text-lg font-semibold mb-4">{{ questionText }}</h3>
+  
+    <div class="space-y-2">
+      <button
+        *ngFor="let opt of options"
+        (click)="selectOption(opt)"
+        [ngClass]="{
+          'bg-blue-600 text-white': selectedOption === opt,
+          'bg-gray-100 hover:bg-gray-200': selectedOption !== opt
+        }"
+        class="w-full text-left px-4 py-2 rounded transition duration-150"
+      >
+        {{ opt }}
+      </button>
+    </div>
+  
+    <div *ngIf="selectedOption" class="mt-4 text-green-600">
+      Has seleccionado: {{ selectedOption }}
+    </div>
+  </div>
+  

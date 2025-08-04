@@ -1,6 +1,19 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
+import { importProvidersFrom } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { HeaderComponent } from './app/components/header/header.component';
+import { TestPagePage } from './app/pages/test-page.page';
 
-bootstrapApplication(AppComponent, appConfig)
-  .catch((err) => console.error(err));
+const routes: Routes = [
+  { path: 'test', component: TestPagePage },
+  { path: '', redirectTo: 'test', pathMatch: 'full' },
+];
+
+bootstrapApplication(AppComponent, {
+  providers: [
+    importProvidersFrom(
+      RouterModule.forRoot(routes)
+    )
+  ]
+});
